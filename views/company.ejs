@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./common/header.ejs', {Document:'company'}); -%>
+        <link rel="stylesheet" href="/style/company.css">
+</head>
+
+<body>
+    <button ID="SHOWcREATE" type="button" class="btn btn-success btn-lg ms-5">CREATE</button>
+    <h5 class="text-danger">
+        <%= error %>
+    </h5>
+    <!-- <button ID="delete" type="button" class="btn btn-success btn-lg ms-5">DELETE</button> -->
+    <section id="cardSection"
+        class="p-4 m-0 d-flex row flex-wrap justify-content-center align-content-center col-12 d-none">
+        <div class=" cardsDiv card m-3 p-3 col-12 ">
+            <div class="row no-gutters">
+                <div class="col-md-4 p-0 m-0 d-flex row justify-content-center ">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrlY8Mw3WWBzaoMvdHBUoCCksfIysJN7jSWQ&usqp=CAU"
+                        alt="..." style="max-width: 320px;">
+                </div>
+                <div class="col-md-8 d-flex row flex-wrap justify-content-center align-content-center m">
+                    <form method="post" action="http://localhost:3000/company">
+                        <div class="card-body">
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    Company name: <input name="Cname" type="text" id="Cname" required>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    Province: <input name="province" type="text" id="province" required>
+                                </p>
+                            </div>
+                            <DIV class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    City: <input name="city" type="text" id="city" required>
+                                </p>
+                            </DIV>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    phoneNumber: <input name="phoneNumber" type="text" id="phoneNumber" required>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    registration Number: <input name="registrationNumber" type="text"
+                                        id="registrationNumber" required>
+                                </p>
+                            </div>
+                            <div id="canselCreate" class="m-4 bordered ">
+                                <p class="card-text text-danger text-center">
+                                    CANCEL
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <button id="btnSubmit" type="submit"
+                                    class="btn btn-block create-account card-text text-success text-center d-flex row justify-content-center">DONE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="cardSection" class="p-4 m-0 d-flex row flex-wrap justify-content-center align-content-center col-12 ">
+        <% for(let i=0; i < data.length; i++) { %>
+            <div class="countCard cardsDiv card m-3 p-3 col-12 <%= data[i].Cname %>">
+                <div class="row no-gutters">
+                    <div class="col-md-4 p-0 m-0 d-flex row justify-content-center ">
+                        <img src="data:image/png;base64,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"
+                            alt="..." style="max-width: 320px;">
+                    </div>
+                    <div class="col-md-8 d-flex row flex-wrap justify-content-center align-content-center m">
+                        <div class="card-body">
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    Company name: <span class="text-primary">
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp <%= data[i].Cname %> <input type="text"
+                                                name="" class="d-none" id="Cname<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    Province: <span class="text-primary">
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        &nbsp&nbsp&nbsp <%= data[i].city %><input type="text" name="" class="d-none"
+                                                id="city<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <DIV class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    City: <span class="text-primary">
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        <%= data[i].province %><input type="text" name="" class="d-none"
+                                                id="province<%=[i]%>">
+                                    </span>
+                                </p>
+                            </DIV>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    phoneNumber: <span class="text-primary">
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= data[i].phoneNumber %>
+                                            <input type="text" name="" class="d-none" id="phoneNumber<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    registration Number: <span class="text-primary">
+                                        &nbsp&nbsp<%= data[i].registrationNumber %><input type="text" name=""
+                                                class="d-none" id="registrationNumber<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <btn id="btnDelete<%=[i]%>" class="btn m-0 p-0" Cname='<%=data[i].Cname%>'>
+                                <div class="m-0 bordered p-2 ms-3">
+                                    <p class="card-text text-danger text-center ">
+                                        DELETE
+                                    </p>
+                                </div>
+                            </btn>
+                            <btn id="btnEmployee" class="btn m-0 p-0">
+                                <a href="http://localhost:3000/company/<%=data[i].Cname%>">
+                                    <div class="m-0 bordered p-2 ms-3">
+                                        <p class="card-text text-success text-center ">
+                                            EMPLOYEES
+                                        </p>
+                                    </div>
+                                </a>
+                            </btn>
+                            <btn id="btnUpdate<%=[i]%>" class="btn m-0 p-0" Cname='<%=data[i].Cname%>'>
+                                <div class="m-0 bordered p-2 ms-3">
+                                    <p class="card-text text-primary text-center ">
+                                        UPDATE
+                                    </p>
+                                </div>
+                            </btn>
+                            <btn id="btnDone<%=[i]%>" class="btn m-0 p-0 d-none" Cname='<%=data[i].Cname%>'>
+                                <div class="m-0 bordered p-2 ms-3">
+                                    <p class="card-text text-primary text-center ">
+                                        DONE
+                                    </p>
+                                </div>
+                            </btn>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </section>
+    <script src="/script/company.js"></script>
+</body>
+
+</html>

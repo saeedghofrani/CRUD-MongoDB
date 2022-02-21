@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./common/header.ejs', {Document:'company'}); -%>
+        <link rel="stylesheet" href="/style/company.css">
+</head>
+
+<body>
+    <button ID="SHOWcREATE" type="button" class="btn btn-success btn-lg ms-5">CREATE</button>
+    <button ID="SHOWcREATE" type="button" class="btn btn-success btn-lg ms-5"><a class="text-primary" href="/company">COMPANY</a></button>
+    <h5 class="text-danger">
+        <%= error %>
+    </h5>
+    <!-- <button ID="delete" type="button" class="btn btn-success btn-lg ms-5">DELETE</button> -->
+    <section id="cardSection"
+        class="p-4 m-0 d-flex row flex-wrap justify-content-center align-content-center col-12 d-none">
+        <div class=" cardsDiv card m-3 p-3 col-12 ">
+            <div class="row no-gutters">
+                <div class="col-md-4 p-0 m-0 d-flex row justify-content-center ">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrlY8Mw3WWBzaoMvdHBUoCCksfIysJN7jSWQ&usqp=CAU"
+                        alt="..." style="max-width: 320px;">
+                </div>
+                <div class="col-md-8 d-flex row flex-wrap justify-content-center align-content-center m">
+                    <form method="post" action="http://localhost:3000/employee">
+                        <div class="card-body">
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    first name: <input name="firstName" type="text" id="firstName" required>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    last name: <input name="lastName" type="text" id="lastName" required>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    national Code: <input name="nationalCode" type="text" id="nationalCode" required>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    Gender: <input name="gender" type="text" id="gender" required>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    date Of Birth: <input name="dateOfBirth" type="text" id="dateOfBirth" required>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    company: <input name="company" type="text" id="company" required>
+                                </p>
+                            </div>
+                            <div id="canselCreate" class="m-4 bordered ">
+                                <p class="card-text text-danger text-center">
+                                    CANCEL
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <button id="btnSubmit" type="submit"
+                                    class="btn btn-block create-account card-text text-success text-center d-flex row justify-content-center">DONE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="cardSection" class="p-4 m-0 d-flex row flex-wrap justify-content-center align-content-center col-12 ">
+        <% for(let i=0; i < data.length; i++) { %>
+            <div class="countCard cardsDiv card m-3 p-3 col-12 <%= data[i].nationalCode %>">
+                <div class="row no-gutters">
+                    <div class="col-md-4 p-0 m-0 d-flex row justify-content-center ">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHZXOHcoiGSeM4aILeej0tBai3HwZF3J7IYg&usqp=CAU"
+                            alt="..." style="max-width: 320px;">
+                    </div>
+                    <div class="col-md-8 d-flex row flex-wrap justify-content-center align-content-center m">
+                        <div class="card-body">
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    first name: <span class="text-primary">
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp <%= data[i].firstName %> <input type="text"
+                                                name="" class="d-none" id="firstName<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    last name: <span class="text-primary">
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        &nbsp&nbsp&nbsp <%= data[i].lastName %><input type="text" name="" class="d-none"
+                                                id="lastName<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    national code: <span class="text-primary">
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= data[i].nationalCode %>
+                                            <input type="text" name="" class="d-none" id="nationalCode<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    Gender: <span class="text-primary">
+                                        &nbsp&nbsp<%= data[i].gender %><input type="text" name="" class="d-none"
+                                                id="gender<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    date of birth: <span class="text-primary">
+                                        &nbsp&nbsp<%= data[i].dateOfBirth %><input type="text" name="" class="d-none"
+                                                id="dateOfBirth<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="m-4 bordered">
+                                <p class="card-text text-success">
+                                    company: <span class="text-primary">
+                                        &nbsp&nbsp<%= data[i].company %><input type="text" name="" class="d-none"
+                                                id="company<%=[i]%>">
+                                    </span>
+                                </p>
+                            </div>
+                            <btn id="btnDelete<%=[i]%>" class="btn m-0 p-0" nationalCode='<%=data[i].nationalCode%>'>
+                                <div class="m-0 bordered p-2 ms-3">
+                                    <p class="card-text text-danger text-center ">
+                                        DELETE
+                                    </p>
+                                </div>
+                            </btn>
+                            <btn id="btnUpdate<%=[i]%>" class="btn m-0 p-0" nationalCode='<%=data[i].nationalCode%>'>
+                                <div class="m-0 bordered p-2 ms-3">
+                                    <p class="card-text text-primary text-center ">
+                                        UPDATE
+                                    </p>
+                                </div>
+                            </btn>
+                            <btn id="btnDone<%=[i]%>" class="btn m-0 p-0 d-none"
+                                nationalCode='<%=data[i].nationalCode%>'>
+                                <div class="m-0 bordered p-2 ms-3">
+                                    <p class="card-text text-primary text-center ">
+                                        DONE
+                                    </p>
+                                </div>
+                            </btn>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </section>
+    <script src="/script/employee.js"></script>
+</body>
+
+</html>

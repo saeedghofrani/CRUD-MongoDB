@@ -1,0 +1,7 @@
+[
+  {
+    "database": {    
+      "mongoURL": "mongodb://localhost:7979/companyManagment"
+    }
+  }
+]
